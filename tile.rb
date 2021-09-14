@@ -1,5 +1,6 @@
 class Tile
-    attr_reader :bomb, :revealed, :flagged
+    attr_reader :revealed, :flagged
+    attr_accessor :bomb
     def initialize(pos,bomb=false)
         @bomb = bomb
         @revealed = false
