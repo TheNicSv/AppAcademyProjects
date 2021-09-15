@@ -8,14 +8,15 @@ class Board
 
     def populate
         fill_grid_with_empty
-        #debugger
         until bomb_counter == 9
             bomb_placer
         end
-
     end
 
-
+    def render
+        puts "  #{(0...@size).to_s}"
+        @grid.each_with_index{|sub, i| puts "#{i} #{sub}"}
+    end
 
 
 
@@ -25,7 +26,7 @@ class Board
     def fill_grid_with_empty
         @grid.map!.with_index do |sub, x|
             sub.map.with_index do |ele, y|
-                Tile.new([x,y])
+                Tile.new(self)
             end
         end
     end
@@ -34,7 +35,7 @@ class Board
         nums = (0...@size).to_a
         x = nums.sample
         y = nums.sample
-        @grid[x][y] = Tile.new([x,y],true)        
+        @grid[x][y] = Tile.new(self,true)        
     end
 
     def bomb_counter
