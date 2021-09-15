@@ -29,14 +29,19 @@ class Board
 
     def revealer(pos)
         return "YOU LOST!!!!" if bomb_pos?(pos)
-        self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
+        return self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
+        if self[pos].neighbor_bomb_counter == 0
+            self[pos].reveal!
+            #debugger
+            self[pos].neighbors.each{|n| revealer(n) if !self[n].revealed}
+        end
     end
 
     def flagger(pos)
         self[pos].flag!
     end
 
-    
+
 
     private
 
