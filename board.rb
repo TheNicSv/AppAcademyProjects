@@ -1,6 +1,7 @@
 require_relative "tile.rb"
 require "byebug"
 class Board
+    attr_reader :grid
     def initialize(size=9)
         @size = size
         @grid = Array.new(size) {Array.new(size)}
