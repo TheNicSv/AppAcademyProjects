@@ -15,7 +15,11 @@ class Tile
     end
 
     def flag!
-        @flagged = true
+        if @flagged 
+             @flagged = false
+        else
+            @flagged = true
+        end
     end
 
     def neighbors

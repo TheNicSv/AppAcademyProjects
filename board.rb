@@ -32,6 +32,7 @@ class Board
             self[pos].flag!
             return false
         end
+        return nil if self[pos].flagged
         return self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
         if self[pos].neighbor_bomb_counter == 0
             self[pos].reveal!

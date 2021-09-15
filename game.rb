@@ -30,7 +30,12 @@ class Game
             @board.flagger(ask_for_pos)
         when "r"
             pos = ask_for_pos
-            @lost = true if !@board.revealer(pos)
+            if @board[pos].flagged
+               puts "You cannot reveal a flagged position"
+               return
+            end
+            @lost = true if @board[pos].bomb
+            @board.revealer(pos)
         when "e"
             @exit = true
         when "s"
