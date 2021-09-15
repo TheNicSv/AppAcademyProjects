@@ -27,8 +27,17 @@ class Board
         @grid[x][y]
     end
 
+    def revealer(pos)
+        return "YOU LOST!!!!" if bomb_pos?(pos)
+        self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
+    end
 
     private
+
+    def bomb_pos?(pos)
+        return true if self[pos].bomb
+        return false
+    end
 
     def fill_grid_with_empty
         @grid.map!.with_index do |sub, x|

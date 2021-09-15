@@ -27,8 +27,8 @@ class Tile
     end
 
     def to_s
+        return "#{neighbor_bomb_counter}" if revealed
         return "F" if flagged
-        return neighbor_bomb_counter if revealed
         return "*"
     end
 
