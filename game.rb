@@ -1,16 +1,28 @@
 require_relative "board.rb"
+require "yaml"
 class Game
-    def initialize
-        @board = Board.new
+    def load_board
+        yaml = YAML.load_file("saved.yml")
+    end
+    def initialize(saved= nil)
+        new_g = Board.new
+        new_g.populate
+        if saved
+            @board = load_board
+        else
+            @board = saved || new_g
+        end
         @exit = false
         @lost = false
+
+        system ("clear")
     end
+
 
     def run
         @exit = false
-        @lost = false
         system ("clear")
-        @board.populate
+
         @board.render
         until @board.won? || @lost || @exit
             ask_to_do
@@ -40,6 +52,7 @@ class Game
             @exit = true
         when "s"
             puts "SAVED"
+            File.open("saved.yml", "w") { |f| f.write @board.to_yaml }
         else
             puts "UKNOWN COMAND"
             ask_to_do

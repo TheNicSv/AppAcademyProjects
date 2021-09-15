@@ -83,4 +83,8 @@ class Board
         end
         count
     end
+
+    def inspect
+        self.render
+    end
 end
