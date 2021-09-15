@@ -51,7 +51,7 @@ class Tile
     end
 
     def inspect
-        
+        {"bomb?" => @bomb, "revelaed?" => @revealed, "flagged" => @flagged, "bomb_counter" => neighbor_bomb_counter}
     end
 
 end
