@@ -32,7 +32,6 @@ class Board
         return self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
         if self[pos].neighbor_bomb_counter == 0
             self[pos].reveal!
-            #debugger
             self[pos].neighbors.each{|n| revealer(n) if !self[n].revealed}
         end
     end
@@ -41,7 +40,14 @@ class Board
         self[pos].flag!
     end
 
-
+    def won?
+        @grid.each do |sub|
+            sub.each do |ele|
+                return false if !ele.revealed && !ele.bomb
+            end
+        end
+        return true
+    end
 
     private
 
