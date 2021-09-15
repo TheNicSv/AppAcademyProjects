@@ -28,7 +28,7 @@ class Board
     end
 
     def revealer(pos)
-        return "YOU LOST!!!!" if bomb_pos?(pos)
+        return false if bomb_pos?(pos)
         return self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
         if self[pos].neighbor_bomb_counter == 0
             self[pos].reveal!
@@ -46,8 +46,7 @@ class Board
     private
 
     def bomb_pos?(pos)
-        return true if self[pos].bomb
-        return false
+        self[pos].bomb
     end
 
     def fill_grid_with_empty
