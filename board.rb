@@ -19,10 +19,13 @@ class Board
         @grid.each_with_index{|sub, i| puts "#{i} #{sub}"}
     end
 
+    def [](pos)
+        x, y = pos
+        @grid[x][y]
+    end
 
 
     private
-
 
     def fill_grid_with_empty
         @grid.map!.with_index do |sub, x|

@@ -1,4 +1,5 @@
 require_relative "board.rb"
+require "byebug"
 class Tile
     attr_reader :revealed, :flagged
     attr_accessor :bomb
@@ -19,7 +20,10 @@ class Tile
 
     def neighbors
         x, y = index_finder
-        [[x-1,y],[x-1,y+1],[x,y+1],[x+1,y+1],[x+1,y],[x+1,y-1],[x,y-1],[x-1,y-1]]
+        a = [[x-1,y],[x-1,y+1],[x,y+1],[x+1,y+1],[x+1,y],[x+1,y-1],[x,y-1],[x-1,y-1]]
+        a.select do |ele|
+            ele.none?{|n| n > 8 || n < 0}
+        end
     end
 
     def to_s
@@ -35,6 +39,14 @@ class Tile
             end
         end
         [x,y]
+    end
+
+    def neighbor_bomb_counter
+        count = 0
+        neighbors.each do |nei|
+            count += 1 if @board[nei].bomb
+        end
+        count
     end
 
 end
