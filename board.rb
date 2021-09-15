@@ -1,7 +1,7 @@
 require_relative "tile.rb"
 require "byebug"
 class Board
-    attr_reader :grid
+    attr_reader :grid, :size
     def initialize(size=9)
         @size = size
         @grid = Array.new(size) {Array.new(size)}
@@ -28,7 +28,10 @@ class Board
     end
 
     def revealer(pos)
-        return false if bomb_pos?(pos)
+        if bomb_pos?(pos)
+            self[pos].flag!
+            return false
+        end
         return self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
         if self[pos].neighbor_bomb_counter == 0
             self[pos].reveal!
