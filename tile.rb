@@ -28,7 +28,8 @@ class Tile
 
     def to_s
         return "F" if flagged
-        return " " if revealed
+        return neighbor_bomb_counter if revealed
+        return "*"
     end
 
     def index_finder
@@ -47,6 +48,10 @@ class Tile
             count += 1 if @board[nei].bomb
         end
         count
+    end
+
+    def inspect
+        
     end
 
 end

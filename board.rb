@@ -15,8 +15,11 @@ class Board
     end
 
     def render
-        puts "  #{(0...@size).to_s}"
-        @grid.each_with_index{|sub, i| puts "#{i} #{sub}"}
+        puts "  #{(0...@size).to_a.join(" ")}"
+        @grid.each_with_index do |sub, i|
+            puts "#{i} #{sub.join(" ")}"
+        end
+        nil
     end
 
     def [](pos)
