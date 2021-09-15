@@ -32,6 +32,12 @@ class Board
         self[pos].reveal! if self[pos].neighbor_bomb_counter != 0
     end
 
+    def flagger(pos)
+        self[pos].flag!
+    end
+
+    
+
     private
 
     def bomb_pos?(pos)
