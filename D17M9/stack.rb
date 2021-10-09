@@ -1,6 +1,6 @@
 class Stack
     def initialize
-        # create ivar to store stack here!
+        # create ivar to store stack here!!
         @stack_array = []
     end
     
