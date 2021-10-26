@@ -6,7 +6,7 @@ class Knight < Piece
         "♘".colorize(color)
     end
 
-    def move_dirs
+    def moves_dirs
         [[-2, -1],
          [-1, -2],
          [-2, 1],

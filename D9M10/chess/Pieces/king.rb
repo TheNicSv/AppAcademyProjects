@@ -5,7 +5,7 @@ class King < Piece
     def symbol
         "♔".colorize(color)
     end
-    def move_diffs
+    def moves_dirs
         [[1, 0],
         [1, 1],
         [0, 1],

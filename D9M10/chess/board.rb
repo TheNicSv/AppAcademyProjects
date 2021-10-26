@@ -1,5 +1,6 @@
 require_relative "pieces.rb"
 require "byebug"
+
 class Board
   attr_reader :rows
 
@@ -40,6 +41,7 @@ class Board
   end
 
   def empty?(pos)
+    debugger
     x, y = pos
     @rows[x][y].empty?
   end
@@ -55,7 +57,9 @@ class Board
 
   def in_check?(color)
     king_pos = find_king(color)
-
+    @rows.any? do |sub|
+      sub.any?{|piece| piece.moves.include?(king_pos)}
+    end
   end
 
   private
