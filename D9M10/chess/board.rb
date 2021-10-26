@@ -7,7 +7,7 @@ class Board
     @sentinel = NullPiece.instance
     @rows = Array.new(8){Array.new(8, @sentinel)}
     set_board
-    end
+  end
 
   def [](pos)
     raise "invalid pos" if !valid_pos?(pos)
@@ -44,6 +44,20 @@ class Board
     @rows[x][y].empty?
   end
 
+  def find_king(color)
+    king_location = []
+    @rows.each_with_index do |sub, i|
+      i2 =  sub.find_index{ |x| x.is_a?(King) && x.color == color }
+      king_location = [i, i2] if i2
+    end
+    king_location
+  end
+
+  def in_check?(color)
+    king_pos = find_king(color)
+
+  end
+
   private
 
   def set_board
@@ -52,7 +66,7 @@ class Board
   end
 
   def set_pawns
-    (0...8).each { |i| Pawn.new(:white, self, [1 , i]) }
+    (0...8).each{ |i| Pawn.new(:white, self,[1,i])}
     (0...8).each{ |i| Pawn.new(:black, self,[6,i])}
   end
 
