@@ -9,6 +9,8 @@ class Display
     @cursor = Cursor.new([0,0], board)
   end
 
+  attr_reader :cursor, :board
+
   def render
     build_grid.each { |row| puts row.join }
     nil
