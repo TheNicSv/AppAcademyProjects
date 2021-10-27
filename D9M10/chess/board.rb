@@ -62,7 +62,18 @@ class Board
     end
   end
 
+  def check_mate(color)
+    return false unless in_check?(color)
+    pieces.select { |p| p.color == color }.all? do |piece|
+      piece.valid_moves.empty?
+    end
+  end
+
   private
+
+  def pieces
+    @rows.flatten.reject(&:empty?)
+  end
 
   def set_board
     set_pawns
