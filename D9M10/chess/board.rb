@@ -41,7 +41,7 @@ class Board
   end
 
   def empty?(pos)
-    debugger
+    #debugger
     x, y = pos
     @rows[x][y].empty?
   end
@@ -58,7 +58,7 @@ class Board
   def in_check?(color)
     king_pos = find_king(color)
     @rows.any? do |sub|
-      sub.any?{|piece| piece.moves.include?(king_pos)}
+      sub.any?{|piece| piece.color != color && piece.moves.include?(king_pos)}
     end
   end
 

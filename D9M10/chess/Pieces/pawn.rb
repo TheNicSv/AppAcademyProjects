@@ -23,7 +23,7 @@ class Pawn < Piece
         a = forward_direc
         diagonals = [[x + a, y + 1], [x + a, y - 1]]
         diagonals.select do |pos|
-            next false if board.valid_pos?(pos)
+            next false if !board.valid_pos?(pos)
             next false if board.empty?(pos)
 
             possible_attack = board[pos]
