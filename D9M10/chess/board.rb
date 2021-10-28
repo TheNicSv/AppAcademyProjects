@@ -4,10 +4,10 @@ require "byebug"
 class Board
   attr_reader :rows
 
-  def initialize
+  def initialize(fill)
     @sentinel = NullPiece.instance
     @rows = Array.new(8){Array.new(8, @sentinel)}
-    set_board
+    set_board if fill
   end
 
   def [](pos)
@@ -67,6 +67,14 @@ class Board
     pieces.select { |p| p.color == color }.all? do |piece|
       piece.valid_moves.empty?
     end
+  end
+
+  def dup
+    dup = Board.new(false)
+    pieces.each do |p|
+      p.class.new(p.color, dup, p.pos)
+    end
+    dup
   end
 
   private
