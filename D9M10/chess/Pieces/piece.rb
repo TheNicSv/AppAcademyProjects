@@ -22,8 +22,14 @@ class Piece
     false
   end
 
+  def valid_moves
+    moves.reject { |move| move_into_check?(move) }
+  end
+
   def move_into_check?(end_pos)
     dup = board.dup
-
+    dup.move_pice(color, pos, end_pos)
+    dup.in_check?(color)
   end
+
 end
