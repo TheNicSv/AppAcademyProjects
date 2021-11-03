@@ -7,13 +7,18 @@ class Display
   def initialize(board)
     @board = board
     @cursor = Cursor.new([0,0], board)
+    @notifications = {}
   end
 
   attr_reader :cursor, :board
 
   def render
+    system("clear")
+    puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
     build_grid.each { |row| puts row.join }
-    nil
+    @notifications.each do |_key, val|
+      puts val
+    end
   end
 
   def build_grid
@@ -41,4 +46,17 @@ class Display
     end
     { background: bg }
   end
+
+  def reset!
+    @notifications.delete(:error)
+  end
+
+  def uncheck
+    @notifications.delete(:check)
+  end
+
+  def check
+    @notifications[:check] = "Check!"
+  end
+
 end
