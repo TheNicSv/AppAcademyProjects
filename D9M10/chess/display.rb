@@ -51,11 +51,11 @@ class Display
     @notifications.delete(:error)
   end
 
-  def uncheck
+  def uncheck!
     @notifications.delete(:check)
   end
 
-  def check
+  def set_check!
     @notifications[:check] = "Check!"
   end
 

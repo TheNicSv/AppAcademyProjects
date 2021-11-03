@@ -7,7 +7,7 @@ class HumanPlayer
 
   attr_reader :color, :display
 
-  def make_move
+  def make_move(_board)
     start_pos, end_pos = nil, nil
 
     until start_pos && end_pos
