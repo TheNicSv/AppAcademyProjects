@@ -28,8 +28,9 @@ class Piece
 
   def move_into_check?(end_pos) #maybe add a move_pice! metod
     dup = board.dup
-    dup.move_pice(color, pos, end_pos)
+    dup.move_piece!(pos, end_pos)
     dup.in_check?(color)
   end
+
 
 end

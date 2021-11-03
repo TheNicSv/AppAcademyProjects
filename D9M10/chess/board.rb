@@ -22,12 +22,18 @@ class Board
     @rows[x][y] = pice
   end
 
-  def move_pice(current_color, start_pos, end_pos)
+  def move_piece(current_color, start_pos, end_pos)
     raise "Start_pos empty please retry" if empty?(start_pos)
     piece = self[start_pos]
     raise "you have to move your own pice" if current_color != self[start_pos].color
     #debugger
-    raise "pice cannot go there" if !piece.moves.include?(end_pos)
+    raise "pice cannot go there" unless piece.valid_moves.include?(end_pos)
+    self[start_pos] = @sentinel
+    self[end_pos] = piece
+  end
+
+  def move_piece!(start_pos, end_pos)
+    piece = self[start_pos]
     self[start_pos] = @sentinel
     self[end_pos] = piece
   end
