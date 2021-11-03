@@ -13,9 +13,13 @@ class HumanPlayer
     until start_pos && end_pos
       display.render
       if start_pos
+        puts "#{color}'s turn. where do you wanto to move to?"
         end_pos = display.cursor.get_input
+        display.reset! if end_pos
       else
+        puts "#{color}'s turn.from where do you want to move?"
         start_pos = display.cursor.get_input
+        display.reset! if start_pos
       end
     end
 
