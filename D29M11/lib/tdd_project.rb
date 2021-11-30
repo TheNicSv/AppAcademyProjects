@@ -18,4 +18,15 @@ class Array
     end
     arr
   end
+
+  def my_transpose
+    n = self.length
+    array = Array.new(n){Array.new}
+    self.each_with_index do |sub, i1|
+      sub.each_with_index do |ele, i2|
+        array[i2][i1] = ele
+      end
+    end
+    array
+  end
 end
