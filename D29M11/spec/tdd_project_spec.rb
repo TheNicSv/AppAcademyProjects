@@ -36,3 +36,19 @@ describe "Array#my_transpose" do
     expect(arr.my_transpose).to eq([[0,3,6],[1,4,7],[2,5,8]])
   end
 end
+
+describe "#stock_picker" do
+  array = [25,48,71,35,12,88,15,48,1,22,15,42,25,15]
+  it "should return a array" do
+    expect(stock_picker(array)).to be_a(Array)
+  end
+  it "should contain 2 elements" do
+    expect(stock_picker(array).count).to eq(2)
+  end
+  it "should have the first element appear earlier in the original array" do
+    expect(array.index(stock_picker(array)[0])).to be < array.index(stock_picker(array)[1])
+  end
+  it "should return the best days to buy and sell" do
+    expect(stock_picker(array)).to eq([4,5])
+  end
+end

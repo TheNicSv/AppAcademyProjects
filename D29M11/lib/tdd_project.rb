@@ -30,3 +30,23 @@ class Array
     array
   end
 end
+# Stock Picker
+# Write a method that takes an array of stock prices (prices on days 0, 1, ...),
+# and outputs the most profitable pair of days on which to first buy the stock and then sell the stock.
+# Remember, you can't sell stock before you buy it!
+
+def stock_picker(array)
+  best_days = []
+  length = array.length
+  bigest_profit = 0
+  (0...length).each do |i1|
+    (i1+1...length).each do |i2|
+      profit = array[i2] - array[i1]
+      if profit > bigest_profit
+        best_days = [i1,i2]
+        bigest_profit = profit
+      end
+    end
+  end
+  best_days
+end
