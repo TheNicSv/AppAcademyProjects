@@ -46,9 +46,34 @@ describe "#stock_picker" do
     expect(stock_picker(array).count).to eq(2)
   end
   it "should have the first element appear earlier in the original array" do
-    expect(array.index(stock_picker(array)[0])).to be < array.index(stock_picker(array)[1])
+    expect(stock_picker(array)[0]).to eq(4)
   end
   it "should return the best days to buy and sell" do
     expect(stock_picker(array)).to eq([4,5])
+  end
+end
+
+describe "Towers" do
+  subject(:towers) {Towers.new}
+  it "should initializa 3 array" do
+    expect(towers.rods).to be_a(Array)
+    expect(towers.rods.length).to eq(3)
+  end
+  it "should have the first array be the tower in ascending order" do
+    expect(towers.rods.first).to eq([4,3,2,1])
+  end
+
+  describe "move" do
+    it "should take in two values" do
+      expect(towers.move(0,2))
+    end
+
+    it "should only accept values between 0 and 2" do
+      expect(towers.move(5,0)).to raise_error(ArgumentError)
+    end
+
+    it "has to have different values" do
+      expect(towers.move(0,0)).to raise_error(ArgumentError)
+    end
   end
 end
